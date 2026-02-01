@@ -1,0 +1,96 @@
+[tool.poetry]
+name = "booking-assistant"
+version = "0.1.0"
+description = "AI Agent which helps with booking's transfer."
+authors = ["Roman Smirnov <smirnov.roman.olegovich@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.14"
+langchain = "^1.2.7"
+langgraph = "^1.0.7"
+langchain-community = "^0.4.1"
+langchain-qwq = "^0.3.4"
+uvloop = "^0.22.1"
+uvicorn = "^0.40.0"
+pydantic = "^2.12.5"
+pydantic-settings = "^2.12.0"
+fastapi = "^0.128.0"
+prometheus-fastapi-instrumentator = "^7.1.0"
+
+[tool.poetry.group.linters.dependencies]
+black = "^26.1.0"
+flake8 = "^7.3.0"
+flake8-pyproject = "^1.2.4"
+isort = "^7.0.0"
+pylint = "^4.0.4"
+pre-commit = "^4.5.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 100
+
+[tool.flake8]
+max-line-length = 100
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "venv",
+    "env",
+    "build",
+    "dist",
+    "docs",
+    "tests",
+    "examples",
+    "scripts",
+    "setup.py",
+    "setup.cfg",
+    "pyproject.toml",
+    "tox.ini",
+    ".*",
+]
+max-annotation-complexity=4
+max-call-level=5
+max-line-complexity=16
+max-raises=4
+max-module-expressions=8
+select = [
+    "B","C", "D9", "E","F", "S", "W", "T2", "T4", "B9", "FBT", "E800",
+    "WPS100", "WPS101", "WPS102", "WPS111", "WPS113", "WPS114", "WPS116", "WPS117", "WPS119", "WPS120", "WPS121", "WPS122", "WPS123", "WPS124",
+    "WPS204", "WPS213", "WPS215", "WPS216", "WPS219", "WPS220", "WPS221", "WPS222", "WPS223", "WPS224", "WPS227", "WPS228", "WPS231", "WPS234", "WPS238",
+    "WPS300", "WPS302", "WPS304", "WPS307", "WPS308", "WPS309", "WPS311", "WPS313", "WPS314", "WPS322", "WPS324", "WPS325", "WPS327", "WPS328", "WPS329", "WPS330", "WPS333", "WPS334", "WPS335", "WPS337", "WPS347", "WPS349", "WPS350", "WPS351", "WPS356", "WPS357", "WPS359", "WPS360",
+    "WPS400", "WPS407", "WPS409", "WPS411", "WPS412", "WPS413", "WPS414", "WPS415", "WPS417", "WPS418", "WPS419", "WPS420", "WPS422", "WPS423", "WPS424", "WPS425", "WPS426", "WPS428", "WPS429", "WPS430", "WPS431", "WPS432", "WPS433", "WPS435", "WPS436", "WPS439", "WPS440", "WPS441", "WPS443", "WPS447", "WPS449", "WPS450", "WPS452", "WPS455", "WPS457", "WPS458", "WPS462", "WPS463", "WPS465", "WPS466", "WPS467", "WPS468", "WPS469", "WPS470", "WPS471", "WPS472",
+    "WPS500", "WPS503", "WPS504", "WPS505", "WPS506", "WPS507", "WPS508", "WPS509", "WPS510", "WPS511", "WPS512", "WPS513", "WPS514", "WPS515", "WPS516", "WPS517", "WPS518", "WPS519", "WPS520", "WPS521", "WPS522", "WPS523", "WPS524", "WPS525", "WPS528", "WPS529", "WPS530", "WPS531", "WPS532",
+    "WPS603", "WPS604", "WPS605", "WPS606", "WPS607", "WPS608", "WPS609", "WPS610", "WPS611", "WPS612", "WPS614"
+]
+ignore = ["W503", "C8", "B001", "B008", "B950", "WPS", "DAR", "N400", "T100", "I", "Q", "RST", "FMT", "N8", "P1", "P3", "E203"]
+
+[tool.isort]
+line_length = 100
+multi_line_output = 3
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+include_trailing_comma = true
+
+[tool.mypy]
+python_version = "3.14"
+incremental = true
+strict = true
+ignore_missing_imports = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = false
+disallow_untyped_decorators = true
+disallow_any_generics = false
+no_implicit_optional = true
+warn_unreachable = true
+warn_return_any = true
+show_error_context = true
+explicit_package_bases = true
+disable_error_code = ["misc"]
