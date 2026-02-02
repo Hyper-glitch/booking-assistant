@@ -1,10 +1,11 @@
 from typing import Annotated, Any
 
-from langchain_core.tools import tool, InjectedToolCallId
+from langchain_core.tools import InjectedToolCallId, tool
 from langgraph.prebuilt import InjectedState
 from langgraph.types import Command
 
-from agent.booking.constants import MAX_OPERATOR_REQUESTS, TRANSFER_TO_OPERATOR_MSG, ASK_OPERATOR_REASON_MSG
+from agent.booking.constants import MAX_OPERATOR_REQUESTS
+from agent.booking.enums import BookingEvent
 from agent.booking.state import BookingState
 from agent.common.helpers import tool_command
 from api.enums import BookingDecision
@@ -21,7 +22,12 @@ def transfer_to_operator(
 
     if limit_reached:
         state.decision = BookingDecision.TO_OPERATOR
+        state.last_event = BookingEvent.OPERATOR_ESCALATED
+    else:
+        state.last_event = BookingEvent.OPERATOR_REQUESTED
 
-    msg = TRANSFER_TO_OPERATOR_MSG if limit_reached else ASK_OPERATOR_REASON_MSG
-
-    return tool_command(state=state, tool_call_id=tool_call_id, result=msg)
+    return tool_command(
+        state=state,
+        tool_call_id=tool_call_id,
+        result=state.last_event,
+    )
