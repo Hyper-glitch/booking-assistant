@@ -11,7 +11,6 @@ from langgraph.runtime import get_runtime
 from langgraph.typing import ContextT, InputT, OutputT, StateT
 
 from agent.common.decider import BaseDecider
-from agent.common.runner import BaseRunner
 
 
 class BaseGraph(ABC, Generic[StateT, ContextT, InputT, OutputT]):
