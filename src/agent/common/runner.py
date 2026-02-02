@@ -1,7 +1,7 @@
 from typing import Sequence
 
 from langchain_core.language_models import BaseChatModel
-from langchain_core.messages import AIMessage, SystemMessage
+from langchain_core.messages import AIMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import BaseTool
 from langgraph.typing import StateT
@@ -25,7 +25,7 @@ class BaseRunner:
     def _prepare_runnable(system_prompt: str, chat_model: BaseChatModel, tools: Sequence[BaseTool]):
         prompt = ChatPromptTemplate.from_messages(
             [
-                (SystemMessage.type, system_prompt),
+                ("system", system_prompt),
                 MessagesPlaceholder(variable_name="messages", optional=True),
             ]
         )
