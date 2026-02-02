@@ -9,6 +9,7 @@ from api.enums import BookingDecision
 
 
 class BookingState(BaseState):
+    booking_id: str
     operator_requests: int = 0
     clarify_answer_attempts: int = 0
     decision: BookingDecision
