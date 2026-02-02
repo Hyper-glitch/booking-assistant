@@ -14,7 +14,7 @@ from agent.booking.service import BookingService
 from agent.booking.state import BookingState
 from agent.booking.tools import BOOKING_TOOLS
 from api.settings import settings
-from integration.client import ExternalAPIClient
+from integration.interface import ExternalAPIClient
 
 logger = logging.getLogger(__name__)
 
