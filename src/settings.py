@@ -38,6 +38,12 @@ class Settings(BaseSettings):
     LLM_MODEL_NAME: str
     LLM_API_KEY: str
 
+    EXTERNAL_API_URL: str
+    EXTERNAL_API_TOKEN: str
+
+    RETRY_STOP_AFTER_ATTEMPTS: int = 3
+    RETRY_WAIT_FIXED_SEC: int = 1
+
     GRAPH_RECURSION_LIMIT: int = 10
 
     @property
