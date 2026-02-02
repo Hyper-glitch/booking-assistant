@@ -1,5 +1,5 @@
-from typing import Any
-
 from langchain_core.tools import BaseTool
 
-BOOKING_TOOLS: list[dict[str, Any]] | list[BaseTool] = []
+from agent.common.helpers import collect_tools
+
+BOOKING_TOOLS: list[BaseTool] = collect_tools("agents.booking.tools")
