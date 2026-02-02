@@ -13,8 +13,8 @@ from agent.booking.runner import BookingRunner
 from agent.booking.service import BookingService
 from agent.booking.state import BookingState
 from agent.booking.tools import BOOKING_TOOLS
+from integration.client import ExternalAPIClient
 from settings import settings
-from integration.interface import ExternalAPIClient
 
 logger = logging.getLogger(__name__)
 
@@ -49,6 +49,7 @@ def graph_builder(
 
 def create_booking_svc(
     chat_model: ChatQwen,
+    api: ExternalAPIClient,
     saver_factory: Callable[[str], AsyncContextManager[BaseCheckpointSaver[str]]],
     dsn_provider: str,
 ) -> BookingService:
@@ -60,7 +61,7 @@ def create_booking_svc(
         tools=BOOKING_TOOLS,
     )
     context = BookingContext(
-        api=ExternalAPIClient(),
+        api=api,
         runner=runner,
     )
     svc = BookingService(

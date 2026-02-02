@@ -9,7 +9,7 @@ from agent.booking.enums import BookingEvent
 from agent.booking.state import BookingState
 from agent.common.helpers import tool_command
 from api.enums import BookingDecision
-from integration.interface import ExternalAPIClient
+from integration.client import ExternalAPIClient
 
 
 @tool("reject_changing_booking")

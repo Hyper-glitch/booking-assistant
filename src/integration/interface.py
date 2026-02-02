@@ -1,10 +1,9 @@
 from abc import ABC, abstractmethod
-from typing import List
 
 from integration.dto import Booking, BookingChangeResponse, BookingWindow
 
 
-class ExternalAPIClient(ABC):
+class ExternalAPIInterface(ABC):
     """Abstract client for external booking system."""
 
     @abstractmethod
@@ -12,7 +11,7 @@ class ExternalAPIClient(ABC):
         """Return current booking details."""
 
     @abstractmethod
-    async def get_available_windows(self, booking_id: str) -> List[BookingWindow]:
+    async def get_available_windows(self, booking_id: str) -> list[BookingWindow]:
         """Return alternative booking windows."""
 
     @abstractmethod

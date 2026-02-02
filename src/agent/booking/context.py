@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from agent.booking.runner import BookingRunner
-from integration.interface import ExternalAPIClient
+from integration.client import ExternalAPIClient
 
 
 @dataclass
