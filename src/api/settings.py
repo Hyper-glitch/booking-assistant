@@ -31,11 +31,14 @@ class Settings(BaseSettings):
     METRICS_URL: str = "/monitoring/metrics"
 
     LLM_TEMPERATURE: float = 0.0
+    LLM_TRIM_MESSAGES_MAX_TOKENS: int = 10000
     LLM_TOP_P: float = 0.7
     LLM_MAX_TOKENS: int = 512
     LLM_SERVER_URL: str
     LLM_MODEL_NAME: str
     LLM_API_KEY: str
+
+    GRAPH_RECURSION_LIMIT: int = 10
 
     @property
     def postgres_dsn(self) -> str:
