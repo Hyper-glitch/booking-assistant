@@ -5,6 +5,7 @@ from typing import Callable
 from fastapi import FastAPI, Request, Response
 from prometheus_client import Counter, Histogram
 from prometheus_fastapi_instrumentator import Instrumentator
+
 from settings import settings
 
 
