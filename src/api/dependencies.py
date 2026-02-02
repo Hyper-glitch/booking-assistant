@@ -1,8 +1,8 @@
 from fastapi import Header, HTTPException, Request
-from settings import settings
 from starlette import status
 
 from agent.booking.service import BookingService
+from settings import settings
 
 
 def get_booking_svc(request: Request) -> BookingService:
@@ -12,6 +12,7 @@ def get_booking_svc(request: Request) -> BookingService:
 async def verify_app_token(
     authorization: str | None = Header(None, alias="Authorization"),
 ) -> None:
+    """Verify app token in each endpoint."""
     if authorization != settings.APP_AUTH_TOKEN:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
