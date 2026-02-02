@@ -7,6 +7,7 @@ from langgraph.checkpoint.base import BaseCheckpointSaver
 from langgraph.constants import END
 from langgraph.graph.state import CompiledStateGraph, StateGraph
 from langgraph.prebuilt import ToolNode
+from langgraph.runtime import get_runtime
 from langgraph.typing import ContextT, InputT, OutputT, StateT
 
 from agent.common.decider import BaseDecider
@@ -17,14 +18,12 @@ class BaseGraph(ABC, Generic[StateT, ContextT, InputT, OutputT]):
     def __init__(
         self,
         decider: BaseDecider,
-        runner: BaseRunner,
         checkpointer: BaseCheckpointSaver[Any],
         tools: Sequence[BaseTool | Callable[..., Any]],
         state_schema: type[StateT],
         context_schema: type[ContextT] | None = None,
     ) -> None:
         self._decider = decider
-        self._runner = runner
         self._checkpointer = checkpointer
         self._tools = tools
         self._state_schema = state_schema
@@ -71,5 +70,6 @@ class BaseGraph(ABC, Generic[StateT, ContextT, InputT, OutputT]):
         """Subclasses must implement the graph construction logic."""
 
     async def _llm_node(self, state: StateT) -> dict[str, AIMessage]:
-        chat_result = await self._runner.ainvoke(state)
+        ctx = get_runtime(self._context_schema).context
+        chat_result = await ctx.runner.ainvoke(state)
         return {"messages": chat_result}
