@@ -1,8 +1,8 @@
 from typing import Any
 
 from langchain_core.messages import ToolMessage
-from langgraph.typing import StateT
 from langgraph.types import Command
+from langgraph.typing import StateT
 
 
 def tool_command(
@@ -20,8 +20,6 @@ def tool_command(
     return Command(
         update={
             **state.model_dump(exclude={"messages"}),
-            "messages": state.messages + [
-                ToolMessage(content=result, tool_call_id=tool_call_id)
-            ],
+            "messages": state.messages + [ToolMessage(content=result, tool_call_id=tool_call_id)],
         }
     )
