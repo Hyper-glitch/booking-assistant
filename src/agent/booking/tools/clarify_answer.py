@@ -28,4 +28,4 @@ def clarify_answer(
     else:
         state.last_event = BookingEvent.CLARIFY_REQUESTED
 
-    return tool_command(state=state, tool_call_id=tool_call_id, result=state.last_event)
+    return tool_command(state=state, tool_call_id=tool_call_id, content=state.last_event)
