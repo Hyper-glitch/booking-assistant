@@ -17,6 +17,7 @@ pydantic = "^2.12.5"
 pydantic-settings = "^2.12.0"
 fastapi = "^0.128.0"
 prometheus-fastapi-instrumentator = "^7.1.0"
+langgraph-checkpoint-postgres = "^3.0.4"
 
 [tool.poetry.group.linters.dependencies]
 black = "^26.1.0"
