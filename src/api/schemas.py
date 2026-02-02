@@ -19,7 +19,7 @@ class AgentRequest(BaseModel):
 class AgentResponse(BaseModel):
     meta: Meta
     message: str
-    decision: BookingDecision
+    decision: BookingDecision = BookingDecision.PENDING
 
     @classmethod
     def from_state(cls, state: BookingState, meta: Meta) -> AgentResponse:
