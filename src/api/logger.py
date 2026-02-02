@@ -2,8 +2,6 @@ import logging
 
 from api.settings import settings
 
-logger = logging.getLogger("api")
-
 
 def setup_logger() -> None:
     """Set up the logger to stdout output."""

@@ -5,7 +5,7 @@ from fastapi import FastAPI
 
 from api.metrics import APIRequestMetrics, setup_metrics
 from api.settings import settings
-from api.v1.routers.agent import router as agent_router
+from api.v1.routers.booking import router as agent_router
 from api.v1.routers.monitoring import router as monitoring_router
 
 
