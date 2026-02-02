@@ -1,3 +1,5 @@
+"""Monitoring router for the Kubernetes API."""
+
 from fastapi import APIRouter
 
 router = APIRouter(

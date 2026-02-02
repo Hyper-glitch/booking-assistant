@@ -1,3 +1,5 @@
+"""Module for booking agent endpoint."""
+
 import logging
 
 from fastapi import APIRouter, Depends, Security
