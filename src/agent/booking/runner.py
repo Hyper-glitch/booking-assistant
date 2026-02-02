@@ -5,7 +5,7 @@ from langchain_core.messages.utils import count_tokens_approximately
 
 from agent.booking.state import BookingState
 from agent.common.runner import BaseRunner
-from api.settings import settings
+from settings import settings
 
 
 class BookingRunner(BaseRunner):

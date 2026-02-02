@@ -6,7 +6,7 @@ import uvloop
 
 from api.app import app
 from api.logger import setup_logger
-from api.settings import settings
+from settings import settings
 
 logger = logging.getLogger(__name__)
 

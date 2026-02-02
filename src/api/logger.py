@@ -1,6 +1,6 @@
 import logging
 
-from api.settings import settings
+from settings import settings
 
 
 def setup_logger() -> None:

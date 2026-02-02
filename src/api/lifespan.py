@@ -6,7 +6,7 @@ from langchain_qwq import ChatQwen
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 
 from agent.booking.builder import create_booking_svc
-from api.settings import settings
+from settings import settings
 
 
 @asynccontextmanager
