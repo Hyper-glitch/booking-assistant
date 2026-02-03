@@ -19,7 +19,7 @@ class BaseRunner:
         )
 
     async def ainvoke(self, state: StateT) -> AIMessage:
-        return await self.runnable.ainvoke(state)
+        return await self.runnable.ainvoke(state.model_dump(mode="json"))
 
     @staticmethod
     def _prepare_runnable(system_prompt: str, chat_model: BaseChatModel, tools: Sequence[BaseTool]):
