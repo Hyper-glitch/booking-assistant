@@ -6,11 +6,12 @@ from langgraph.graph import add_messages
 from agent.booking.enums import BookingEvent
 from agent.common.state import BaseState
 from api.enums import BookingDecision
+from integration.dto import Booking
 
 
 class BookingState(BaseState):
     booking_id: str
-    booking: dict | None = None
+    booking: Booking = None
     operator_requests: int = 0
     clarify_answer_attempts: int = 0
     decision: BookingDecision = BookingDecision.PENDING
