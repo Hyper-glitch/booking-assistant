@@ -5,7 +5,7 @@ from langgraph.checkpoint.base import BaseCheckpointSaver
 from langgraph.graph.state import CompiledStateGraph
 from langgraph.typing import ContextT, InputT, OutputT, StateT
 
-from agent.common.decorators import handle_exceptions
+from agent.common.decorators.handle_exceptions import handle_exceptions
 
 
 class BaseAgentService:
