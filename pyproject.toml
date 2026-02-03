@@ -20,6 +20,7 @@ prometheus-fastapi-instrumentator = "^7.1.0"
 langgraph-checkpoint-postgres = "^3.0.4"
 psycopg = {extras = ["binary"], version = "^3.3.2"}
 mimesis = "^19.1.0"
+aiocache = "^0.12.3"
 
 [tool.poetry.group.linters.dependencies]
 black = "^26.1.0"
