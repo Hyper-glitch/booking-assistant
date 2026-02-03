@@ -2,6 +2,7 @@
 Tool execution logger for LangGraph agents.
 """
 
+import asyncio
 import functools
 import logging
 import time
@@ -28,11 +29,10 @@ def log_tool_execution() -> Callable:
             context = {
                 "tool_name": func_name,
                 "tool_call_id": tool_call_id,
+                "booking_id": state.booking_id,
+                "session_id": state.session_id,
+                "decision": state.decision,
             }
-
-            for attr in ("booking_id", "thread_id", "session_id", "user_id"):
-                if hasattr(state, attr):
-                    context[attr] = getattr(state, attr)
 
             logger.log(
                 settings.LOG_LEVEL,
@@ -49,7 +49,11 @@ def log_tool_execution() -> Callable:
 
             start_time = time.perf_counter()
             try:
-                result = await func(*args, **kwargs)
+                if asyncio.iscoroutinefunction(func):
+                    result = await func(*args, **kwargs)
+                else:
+                    result = func(*args, **kwargs)
+
                 duration = time.perf_counter() - start_time
                 logger.log(
                     settings.LOG_LEVEL,
