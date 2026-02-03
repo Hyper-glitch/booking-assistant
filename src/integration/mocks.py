@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 from unittest.mock import AsyncMock
@@ -6,6 +7,8 @@ from mimesis import Address, Datetime, Person
 from mimesis.locales import Locale
 
 from integration.dto import Booking, BookingChangeResponse, BookingWindow
+
+logger = logging.getLogger(__name__)
 
 
 def generate_mock_booking(booking_id: str | None = None) -> Booking:
@@ -74,6 +77,7 @@ def generate_mock_available_windows(count: int = 3) -> list[BookingWindow]:
         end_time = start_time + timedelta(hours=2)
         windows.append(BookingWindow(start_date_time=start_time, end_date_time=end_time))
 
+    logger.info(f"mock_available_windows: {windows}")
     return windows
 
 
