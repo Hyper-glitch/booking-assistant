@@ -8,12 +8,14 @@ from langgraph.types import Command
 from agent.booking.constants import MAX_OPERATOR_REQUESTS
 from agent.booking.enums import BookingEvent
 from agent.booking.state import BookingState
+from agent.common.decorators.tool_loging import log_tool_execution
 from agent.common.helpers import tool_command
 from api.enums import BookingDecision
 from integration.client import ExternalAPIClient
 
 
 @tool("transfer_to_operator")
+@log_tool_execution()
 async def transfer_to_operator(
     state: Annotated[BookingState, InjectedState],
     tool_call_id: Annotated[str, InjectedToolCallId],

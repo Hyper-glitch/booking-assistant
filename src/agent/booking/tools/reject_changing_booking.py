@@ -7,12 +7,14 @@ from langgraph.types import Command
 
 from agent.booking.enums import BookingEvent
 from agent.booking.state import BookingState
+from agent.common.decorators.tool_loging import log_tool_execution
 from agent.common.helpers import tool_command
 from api.enums import BookingDecision
 from integration.client import ExternalAPIClient
 
 
 @tool("reject_changing_booking")
+@log_tool_execution()
 async def reject_changing_booking(
     state: Annotated[BookingState, InjectedState],
     tool_call_id: Annotated[str, InjectedToolCallId],

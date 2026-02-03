@@ -7,11 +7,13 @@ from langgraph.types import Command
 from agent.booking.constants import MAX_CLARIFY_ANSWER_ATTEMPTS
 from agent.booking.enums import BookingEvent
 from agent.booking.state import BookingState
+from agent.common.decorators.tool_loging import log_tool_execution
 from agent.common.helpers import tool_command
 from api.enums import BookingDecision
 
 
 @tool("clarify_answer")
+@log_tool_execution()
 def clarify_answer(
     state: Annotated[BookingState, InjectedState],
     tool_call_id: Annotated[str, InjectedToolCallId],
