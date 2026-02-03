@@ -5,7 +5,7 @@ import uvicorn
 import uvloop
 
 from api.app import app
-from api.logger import setup_logger
+from logger import setup_logger
 from settings import settings
 
 logger = logging.getLogger(__name__)
