@@ -18,15 +18,13 @@ class Settings(BaseSettings):
     APP_PORT: int = 8080
     APP_ENV: Literal["local", "dev", "prod"] = "local"
 
-    JWT_SECRET_KEY: str
-    JWT_ALGORITHM: str = "HS256"
     APP_AUTH_TOKEN: str
 
     POSTGRESQL_USERNAME: str
     POSTGRESQL_PASSWORD: str
-    POSTGRESQL_HOST: str = "database"
+    POSTGRESQL_HOST: str = "localhost"
     POSTGRESQL_PORT: int = 5432
-    POSTGRESQL_DB: str = "database"
+    POSTGRESQL_DB: str = "agentdb"
 
     METRICS_URL: str = "/monitoring/metrics"
 
