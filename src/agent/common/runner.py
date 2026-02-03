@@ -1,4 +1,5 @@
-from typing import Sequence
+from abc import ABC, abstractmethod
+from typing import Any, Sequence
 
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import AIMessage
@@ -7,7 +8,7 @@ from langchain_core.tools import BaseTool
 from langgraph.typing import StateT
 
 
-class BaseRunner:
+class BaseRunner(ABC):
     def __init__(
         self,
         system_prompt: str,
@@ -19,7 +20,12 @@ class BaseRunner:
         )
 
     async def ainvoke(self, state: StateT) -> AIMessage:
-        return await self.runnable.ainvoke(state.model_dump(mode="json"))
+        invoke_state = self.get_invoke_state(state)
+        return await self.runnable.ainvoke(invoke_state)
+
+    @abstractmethod
+    def get_invoke_state(self, state: StateT) -> dict[str, Any]:
+        """Must implement in child class."""
 
     @staticmethod
     def _prepare_runnable(system_prompt: str, chat_model: BaseChatModel, tools: Sequence[BaseTool]):
